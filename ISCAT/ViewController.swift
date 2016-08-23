@@ -13,19 +13,22 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var sv: UIScrollView!
     @IBOutlet weak var zoomButton: UIButton!
     
-    
-    //var ld: TraceIO?
 
     let v = TraceDisplay() //content view
+    let ld = TraceIO()     //file retrieval
   
-    let header = 3000
+    let header = 3000       //axograph
     let tStart = 0
-    var tScale = 1
-    let basicChunk : CGFloat = 1000
+    
+    let basicChunk : CGFloat = 1000     // points in a base chunk of data
     
     var pointIndex : Int = 0
-    let ld = TraceIO()
-    var arr = [Int16]() //this array will hold the trace data
+    var tScale = 1          //this is terrible mixing up t and x
+    var toffset = CGFloat()
+    var yoffset = CGFloat()
+    var xp : CGFloat = 0    //the xposn of the trace
+    
+    var arr = [Int16]() //  this array will hold the trace data
     
     func getTrace() -> [Int16] {
         arr = ld.loadData()
@@ -36,29 +39,26 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func traceView(arr: [Int16]) {
         let traceLength = arr.count
         
-        var xp : CGFloat = 10                   //the xposn of the trace
+        
         var firstPoint = CGPoint(x:xp, y:200)
         var drawnPoint = CGPoint(x:xp, y:200)
         
         let chunk = Int (basicChunk / v.tDrawScale )
-        let chunkN = (traceLength - header) / chunk
+        let chunkN = (traceLength - header) / chunk         // the number of chunks to display
         let step = ceil(2 / Double(v.tDrawScale))
         
         print (step, chunkN, chunkN * chunk, traceLength)
         
         sv.backgroundColor = UIColor.whiteColor()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.minimumZoomScale = 0.5
-        sv.maximumZoomScale = 2
+        sv.minimumZoomScale = 0.1
+        sv.maximumZoomScale = 10
         
         if sv != nil {
             sv.delegate = self
         }
-        //sv.scrollEnabled = true
         
         sv.addSubview(v)        //UIView
-        
-        
         
         for i in 0..<chunkN {
             
@@ -114,6 +114,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let trace = getTrace()
         print (trace[0])
         traceView(trace)
+        sv.bouncesZoom = false
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -125,19 +126,33 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func viewForZoomingInScrollView(sv: UIScrollView) -> UIView?
-    {
+    func viewForZoomingInScrollView(sv: UIScrollView) -> UIView? {
         return v
         
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         print("scrollViewDidScroll")
+        print (scrollView.contentOffset)
+        print (scrollView.contentSize)
+        self.toffset = scrollView.contentOffset.x
+        self.yoffset = scrollView.contentOffset.y
         sv.userInteractionEnabled = true
+        
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         print("scrollViewDidZoom")
+        
+        sv.frame.origin.x = self.toffset
+        
+        let zoomValue = scrollView.zoomScale
+        //v.tDrawScale *= zoomValue             #meltdown - not defensive.
+        
+        var sz = sv.bounds.size
+        sz.width = xp * zoomValue
+        sv.contentSize = sz
+
         sv.userInteractionEnabled = true
         //think about passing new scale onto the hard zoom? at the moment, it locks up. 
         //separate threads? How to release?
@@ -149,22 +164,26 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     //add vertical zoom?
 
     @IBAction func zoomIn(sender: UIButton) {
-        v.tDrawScale *= 2
-        v.layer.sublayers = nil
+        //need to put a defensive limit in here to avoid overshoot
+        
+        v.tDrawScale *= 2       //increase the horizontal zoom factor
+        v.layer.sublayers = nil //kill all the existing layes (ALL!!!)
         
          //add display of zoom factor
         
-        //viewWillAppear() // not supposed to do this, and it's wasteful - whole file is loaded each time
+        //redraw the view
         self.traceView(arr)
     }
 
     @IBAction func zoomOut(sender: UIButton) {
-        v.tDrawScale /= 2
-        v.layer.sublayers = nil
+        //need to put a defensive limit in here to avoid undershoot (data disappears!)
+        
+        v.tDrawScale /= 2           //reduce the horizontal zoom factor
+        v.layer.sublayers = nil     //kill all the existing layes (ALL!!!)
         
         //add display of zoom factor
         
-        //viewWillAppear()
+        //redraw the view
         self.traceView(arr)
     }
   

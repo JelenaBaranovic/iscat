@@ -18,9 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.10000000000000001" maximumZoomScale="8" translatesAutoresizingMaskIntoConstraints="NO" id="wmA-pc-1e8">
-                                <rect key="frame" x="10" y="50" width="570" height="521"/>
-                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyE-K9-wXX">
                                 <rect key="frame" x="33" y="18" width="65" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -36,17 +33,21 @@
                                     <action selector="zoomOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GmL-g4-g8m"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ISCAT Interactive Single Channel Analysis with Touch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-EM-0YM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ISCAT Interactive Single Channel Analysis with Touch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-EM-0YM">
                                 <rect key="frame" x="196" y="20" width="405" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.10000000000000001" maximumZoomScale="8" translatesAutoresizingMaskIntoConstraints="NO" id="wmA-pc-1e8">
+                                <rect key="frame" x="15" y="56" width="570" height="521"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="wmA-pc-1e8" secondAttribute="trailing" constant="28" id="3D2-7N-d9E"/>
-                            <constraint firstItem="wmA-pc-1e8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="O2P-rW-CxD"/>
+                            <constraint firstItem="wmA-pc-1e8" firstAttribute="top" secondItem="kFZ-EM-0YM" secondAttribute="bottom" constant="50" id="Vs2-5n-FRF"/>
+                            <constraint firstItem="wmA-pc-1e8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="dkx-bP-46B"/>
+                            <constraint firstItem="wmA-pc-1e8" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="t5n-EF-kRc"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wmA-pc-1e8" secondAttribute="bottom" constant="29" id="ugH-ps-HBc"/>
                         </constraints>
                     </view>
