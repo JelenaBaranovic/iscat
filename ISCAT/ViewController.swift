@@ -8,17 +8,176 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var sv: UIScrollView!
+    @IBOutlet weak var zoomButton: UIButton!
+    
+    
+    //var ld: TraceIO?
+
+    let v = TraceDisplay() //content view
+  
+    let header = 3000
+    let tStart = 0
+    var tScale = 1
+    let basicChunk : CGFloat = 1000
+    
+    var pointIndex : Int = 0
+    let ld = TraceIO()
+    
+    func getTrace() -> [Int16] {
+        let arr = ld.loadData()
+        return arr
+        
+    }
+    
+    func traceView(arr: [Int16]) {
+        let traceLength = arr.count
+        
+        var xp : CGFloat = 10                   //the xposn of the trace
+        var firstPoint = CGPoint(x:xp, y:200)
+        var drawnPoint = CGPoint(x:xp, y:200)
+        
+        var chunk = Int (basicChunk / v.tDrawScale )
+        var chunkN = (traceLength - header) / chunk
+        var step = ceil(2 / Double(v.tDrawScale))
+        
+        print (step, chunkN, chunkN * chunk, traceLength)
+        
+        sv.backgroundColor = UIColor.whiteColor()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.minimumZoomScale = 0.5
+        sv.maximumZoomScale = 2
+        
+        if sv != nil {
+            sv.delegate = self
+        }
+        //sv.scrollEnabled = true
+        
+        sv.addSubview(v)        //UIView
+        
+        
+        
+        for i in 0..<chunkN {
+            
+            //chunk label
+            let lab = UILabel()
+            lab.text = "This chunk is #\(i+1)"
+            lab.sizeToFit()
+            lab.frame.origin = CGPointMake(xp, 100)
+            v.addSubview(lab)
+            
+            //drawing trace
+            let thickness: CGFloat = 2.0
+            let tracePath = UIBezierPath()
+            tracePath.moveToPoint(firstPoint)
+            
+            for index in 0.stride(to: chunk, by: Int(step))  {
+                
+                pointIndex = index + header + tStart + i * chunk
+                
+                //xp is separately scaled by tDrawScale
+                drawnPoint = CGPoint(x: xp + v.tDrawScale * CGFloat(index), y: CGFloat(200) * (1.0 + CGFloat(arr![pointIndex]) / 32536.0))
+                
+                tracePath.addLineToPoint(drawnPoint)
+                
+            }
+            
+            //grab the last plotted point for next iteration
+            firstPoint = drawnPoint
+            print (i, firstPoint)
+            
+            // render to layer
+            let traceLayer = CAShapeLayer()
+            traceLayer.path = tracePath.CGPath
+            traceLayer.strokeColor = UIColor.blackColor().CGColor
+            traceLayer.fillColor = nil
+            traceLayer.lineWidth = thickness
+            v.layer.addSublayer(traceLayer)             //basically accumulate a bunch of anonymous layers.
+            
+            xp += CGFloat(chunk) * v.tDrawScale
+        }
+        
+        var sz = sv.bounds.size     //Not sure what these three lines do any more.
+        sz.width = xp
+        sv.contentSize = sz
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        //Load the trace
+        let trace = getTrace()
+        print (trace[0])
+        traceView(trace)
+    }
+    
+    
+    
+    
+    
+    
+        
+
+        
+
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    func viewForZoomingInScrollView(sv: UIScrollView!) -> UIView!
+    {
+        return v
+        
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView!) {
+        print("scrollViewDidScroll")
+        sv.userInteractionEnabled = true
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView!) {
+        print("scrollViewDidZoom")
+        sv.userInteractionEnabled = true
+        //think about passing new scale onto the hard zoom? at the moment, it locks up. 
+        //separate threads? How to release?
+    }
+    
+    //mark actions
+
+    
+    //add vertical zoom?
+
+    @IBAction func zoomIn(sender: UIButton) {
+        v.tDrawScale *= 2
+        v.layer.sublayers = nil
+        
+         //add display of zoom factor
+        
+        //viewWillAppear() // not supposed to do this, and it's wasteful - whole file is loaded each time
+        self.traceView()
+    }
+
+    @IBAction func zoomOut(sender: UIButton) {
+        v.tDrawScale /= 2
+        v.layer.sublayers = nil
+        
+        //add display of zoom factor
+        
+        //viewWillAppear()
+        self.traceView()
+    }
+  
 
 
 }

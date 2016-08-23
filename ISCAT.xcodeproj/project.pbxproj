@@ -13,6 +13,10 @@
 		491A7CE61D4CE2030017D238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 491A7CE51D4CE2030017D238 /* Assets.xcassets */; };
 		491A7CE91D4CE2030017D238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491A7CE71D4CE2030017D238 /* LaunchScreen.storyboard */; };
 		491A7CF41D4CE2040017D238 /* ISCATTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7CF31D4CE2040017D238 /* ISCATTests.swift */; };
+		491A7D011D4D06510017D238 /* TraceIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7D001D4D06510017D238 /* TraceIO.swift */; };
+		4947561E1D4D59FD00C485DB /* sim1600.bin in Resources */ = {isa = PBXBuildFile; fileRef = 4947561D1D4D59FD00C485DB /* sim1600.bin */; };
+		49FAED351D6B1B1200876B09 /* TraceDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FAED341D6B1B1200876B09 /* TraceDraw.swift */; };
+		49FAED371D6B38D000876B09 /* TraceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FAED361D6B38D000876B09 /* TraceDisplay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		491A7CEF1D4CE2040017D238 /* ISCATTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISCATTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		491A7CF31D4CE2040017D238 /* ISCATTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISCATTests.swift; sourceTree = "<group>"; };
 		491A7CF51D4CE2040017D238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		491A7D001D4D06510017D238 /* TraceIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceIO.swift; sourceTree = "<group>"; };
+		4947561D1D4D59FD00C485DB /* sim1600.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sim1600.bin; sourceTree = "<group>"; };
+		49FAED341D6B1B1200876B09 /* TraceDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceDraw.swift; sourceTree = "<group>"; };
+		49FAED361D6B38D000876B09 /* TraceDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TraceDisplay.swift; path = ../../../../.Trash/TraceDisplay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +85,11 @@
 		491A7CDD1D4CE2030017D238 /* ISCAT */ = {
 			isa = PBXGroup;
 			children = (
+				4947561D1D4D59FD00C485DB /* sim1600.bin */,
 				491A7CDE1D4CE2030017D238 /* AppDelegate.swift */,
+				49FAED341D6B1B1200876B09 /* TraceDraw.swift */,
+				491A7D001D4D06510017D238 /* TraceIO.swift */,
+				49FAED361D6B38D000876B09 /* TraceDisplay.swift */,
 				491A7CE01D4CE2030017D238 /* ViewController.swift */,
 				491A7CE21D4CE2030017D238 /* Main.storyboard */,
 				491A7CE51D4CE2030017D238 /* Assets.xcassets */,
@@ -146,6 +158,7 @@
 				TargetAttributes = {
 					491A7CDA1D4CE2030017D238 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = X4ZMWLTP5C;
 					};
 					491A7CEE1D4CE2040017D238 = {
 						CreatedOnToolsVersion = 7.2;
@@ -179,6 +192,7 @@
 			files = (
 				491A7CE91D4CE2030017D238 /* LaunchScreen.storyboard in Resources */,
 				491A7CE61D4CE2030017D238 /* Assets.xcassets in Resources */,
+				4947561E1D4D59FD00C485DB /* sim1600.bin in Resources */,
 				491A7CE41D4CE2030017D238 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +213,9 @@
 			files = (
 				491A7CE11D4CE2030017D238 /* ViewController.swift in Sources */,
 				491A7CDF1D4CE2030017D238 /* AppDelegate.swift in Sources */,
+				491A7D011D4D06510017D238 /* TraceIO.swift in Sources */,
+				49FAED371D6B38D000876B09 /* TraceDisplay.swift in Sources */,
+				49FAED351D6B1B1200876B09 /* TraceDraw.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,10 +344,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ISCAT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.FMP-Berlin.ISCAT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -338,10 +358,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ISCAT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.FMP-Berlin.ISCAT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -388,6 +411,7 @@
 				491A7CFA1D4CE2040017D238 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		491A7CFB1D4CE2040017D238 /* Build configuration list for PBXNativeTarget "ISCATTests" */ = {
 			isa = XCConfigurationList;
@@ -396,6 +420,7 @@
 				491A7CFD1D4CE2040017D238 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
