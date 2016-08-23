@@ -25,9 +25,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     var pointIndex : Int = 0
     let ld = TraceIO()
+    var arr = [Int16]() //this array will hold the trace data
     
     func getTrace() -> [Int16] {
-        let arr = ld.loadData()
+        arr = ld.loadData()
         return arr
         
     }
@@ -39,9 +40,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var firstPoint = CGPoint(x:xp, y:200)
         var drawnPoint = CGPoint(x:xp, y:200)
         
-        var chunk = Int (basicChunk / v.tDrawScale )
-        var chunkN = (traceLength - header) / chunk
-        var step = ceil(2 / Double(v.tDrawScale))
+        let chunk = Int (basicChunk / v.tDrawScale )
+        let chunkN = (traceLength - header) / chunk
+        let step = ceil(2 / Double(v.tDrawScale))
         
         print (step, chunkN, chunkN * chunk, traceLength)
         
@@ -78,7 +79,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 pointIndex = index + header + tStart + i * chunk
                 
                 //xp is separately scaled by tDrawScale
-                drawnPoint = CGPoint(x: xp + v.tDrawScale * CGFloat(index), y: CGFloat(200) * (1.0 + CGFloat(arr![pointIndex]) / 32536.0))
+                drawnPoint = CGPoint(x: xp + v.tDrawScale * CGFloat(index), y: CGFloat(200) * (1.0 + CGFloat(arr[pointIndex]) / 32536.0))
                 
                 tracePath.addLineToPoint(drawnPoint)
                 
@@ -113,17 +114,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let trace = getTrace()
         print (trace[0])
         traceView(trace)
-    }
-    
-    
-    
-    
-    
-    
-        
-
-        
-
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -135,18 +125,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func viewForZoomingInScrollView(sv: UIScrollView!) -> UIView!
+    func viewForZoomingInScrollView(sv: UIScrollView) -> UIView?
     {
         return v
         
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView!) {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         print("scrollViewDidScroll")
         sv.userInteractionEnabled = true
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView!) {
+    func scrollViewDidZoom(scrollView: UIScrollView) {
         print("scrollViewDidZoom")
         sv.userInteractionEnabled = true
         //think about passing new scale onto the hard zoom? at the moment, it locks up. 
@@ -165,7 +155,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
          //add display of zoom factor
         
         //viewWillAppear() // not supposed to do this, and it's wasteful - whole file is loaded each time
-        self.traceView()
+        self.traceView(arr)
     }
 
     @IBAction func zoomOut(sender: UIButton) {
@@ -175,7 +165,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         //add display of zoom factor
         
         //viewWillAppear()
-        self.traceView()
+        self.traceView(arr)
     }
   
 
