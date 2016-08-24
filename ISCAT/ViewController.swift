@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var sv: UIScrollView!
     @IBOutlet weak var zoomButton: UIButton!
     @IBOutlet weak var zoomLabel: UILabel!
+    @IBOutlet weak var progressLabel: UILabel!
     
 
     let v = TraceDisplay() //content view
@@ -25,14 +26,29 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     var pointIndex : Int = 0
     var tScale = 1          //this is terrible mixing up t and x
-    var offset = CGPoint()
+    var offset = CGPoint() //view offset
+    var viewSize = CGRect()
     var xp : CGFloat = 0    //the xposn of the trace
+    var originalZoom = CGFloat(1)
+    var originalContentSize = CGSize()
+    
+    var progress = Float()
     
     var arr = [Int16]() //  this array will hold the trace data
     
     func getTrace() -> [Int16] {
         arr = ld.loadData()
         return arr
+        
+    }
+    
+    func updateLabels () {
+        zoomLabel.text = String(format:"%.1f", sv.zoomScale)
+        progress = 100 * Float(sv.contentOffset.x) / Float(sv.contentSize.width)
+        if (progress < 0) {
+            progress = 0
+        }
+        progressLabel.text = String(format:"%.1f%%", progress)
         
     }
     
@@ -51,8 +67,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         sv.backgroundColor = UIColor.whiteColor()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.minimumZoomScale = 0.1
-        sv.maximumZoomScale = 10
+        sv.minimumZoomScale = 0.2
+        sv.maximumZoomScale = 5
         
         if sv != nil {
             sv.delegate = self
@@ -95,7 +111,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             traceLayer.strokeColor = UIColor.blackColor().CGColor
             traceLayer.fillColor = nil
             traceLayer.lineWidth = thickness
-            v.layer.addSublayer(traceLayer)             //basically accumulate a bunch of anonymous layers.
+            v.layer.addSublayer(traceLayer)             //accumulate a bunch of anonymous layers.
             
             xp += CGFloat(chunk) * v.tDrawScale
         }
@@ -112,10 +128,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
         //Load the trace
         let trace = getTrace()
-        print (trace[0])
+        //print (trace[0])
         traceView(trace)
         sv.bouncesZoom = false
-
+        updateLabels()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -132,34 +149,53 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-    
+        //print ("scrolled", sv.contentOffset)
+        updateLabels()
         sv.userInteractionEnabled = true
         
     }
     
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+    
+        
+        var sz = sv.bounds.size
+        sz.width = xp * scale
+        sz.height *= scale //reset size of view
+        sv.contentSize = sz
+        
+        updateLabels()
+        
+        
+        //print ("content size after resize", sv.contentSize.width, "offset after resize" , sv.contentOffset.x)
+        sv.userInteractionEnabled = true
+    }
+    
+    
     func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
    
-        self.offset = scrollView.contentOffset
-        print (scrollView.contentOffset.x)
+        self.offset = sv.contentOffset
+        self.originalZoom = sv.zoomScale //needed to keep the view centred
+        self.originalContentSize = sv.contentSize
+        
+        //print ("begin zoom", self.offset, self.originalZoom)
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         //print("scrollViewDidZoom")
         
+        let zoomFactor = (sv.zoomScale / self.originalZoom)   // relative to original zoom during transition
+        sv.contentOffset = CGPoint(x:self.offset.x * zoomFactor + sv.bounds.width / 2 * (zoomFactor - 1), y:self.offset.y * zoomFactor + sv.bounds.height / 2 * (zoomFactor - 1))
         
         
-        let zoomValue = scrollView.zoomScale
-        //v.tDrawScale *= zoomValue             #meltdown - not defensive.
+        //update progress counter but with special values
         
-        var sz = sv.bounds.size
-        sz.width = xp * zoomValue
-        sv.contentSize = sz
-        sv.contentOffset = self.offset
-        //sv.contentOffset = CGPoint(x:self.offset.x * zoomValue, y:self.offset.y * zoomValue)
-        zoomLabel.text = String(zoomValue)
-        sv.userInteractionEnabled = true
-        //think about passing new scale onto the hard zoom? at the moment, it locks up. 
-        //separate threads? How to release?
+        //to get the progress meter correct, the
+        //original content size must be scaled by the zoom factor during the zoom
+        progress = 100 * Float(sv.contentOffset.x) / Float(self.originalContentSize.width * zoomFactor)
+        
+        
+        progressLabel.text = String(format:"%.0f%%", progress)
+        
     }
     
     //mark actions
@@ -170,14 +206,20 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func zoomIn(sender: UIButton) {
         //need to put a defensive limit in here to avoid overshoot
-        
+        self.offset = sv.contentOffset
+        print ("hard zooming", self.offset)
         v.tDrawScale *= 2       //increase the horizontal zoom factor
         v.layer.sublayers = nil //kill all the existing layes (ALL!!!)
+        
+        
         
          //add display of zoom factor
         
         //redraw the view
         self.traceView(arr)
+        sv.zoomScale *= 2
+        print ("redrawn", sv.contentOffset)
+        sv.contentOffset = CGPoint (x: self.offset.x * v.tDrawScale, y: self.offset.y)
     }
 
     @IBAction func zoomOut(sender: UIButton) {
