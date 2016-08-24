@@ -12,6 +12,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var sv: UIScrollView!
     @IBOutlet weak var zoomButton: UIButton!
+    @IBOutlet weak var zoomLabel: UILabel!
     
 
     let v = TraceDisplay() //content view
@@ -24,8 +25,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     var pointIndex : Int = 0
     var tScale = 1          //this is terrible mixing up t and x
-    var toffset = CGFloat()
-    var yoffset = CGFloat()
+    var offset = CGPoint()
     var xp : CGFloat = 0    //the xposn of the trace
     
     var arr = [Int16]() //  this array will hold the trace data
@@ -132,19 +132,21 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("scrollViewDidScroll")
-        print (scrollView.contentOffset)
-        print (scrollView.contentSize)
-        self.toffset = scrollView.contentOffset.x
-        self.yoffset = scrollView.contentOffset.y
+    
         sv.userInteractionEnabled = true
         
     }
     
+    func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
+   
+        self.offset = scrollView.contentOffset
+        print (scrollView.contentOffset.x)
+    }
+    
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        print("scrollViewDidZoom")
+        //print("scrollViewDidZoom")
         
-        sv.frame.origin.x = self.toffset
+        
         
         let zoomValue = scrollView.zoomScale
         //v.tDrawScale *= zoomValue             #meltdown - not defensive.
@@ -152,7 +154,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var sz = sv.bounds.size
         sz.width = xp * zoomValue
         sv.contentSize = sz
-
+        sv.contentOffset = self.offset
+        //sv.contentOffset = CGPoint(x:self.offset.x * zoomValue, y:self.offset.y * zoomValue)
+        zoomLabel.text = String(zoomValue)
         sv.userInteractionEnabled = true
         //think about passing new scale onto the hard zoom? at the moment, it locks up. 
         //separate threads? How to release?
@@ -163,6 +167,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     //add vertical zoom?
 
+    
     @IBAction func zoomIn(sender: UIButton) {
         //need to put a defensive limit in here to avoid overshoot
         
