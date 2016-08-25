@@ -118,7 +118,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         var sz = sv.bounds.size     //Not sure what these three lines do any more.
         sz.width = xp
-        sv.contentSize = sz
+        sv.contentSize = sz     //change size to
 
     }
     
@@ -184,9 +184,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         //print("scrollViewDidZoom")
         
         let zoomFactor = (sv.zoomScale / self.originalZoom)   // relative to original zoom during transition
-        sv.contentOffset = CGPoint(x:self.offset.x * zoomFactor + sv.bounds.width / 2 * (zoomFactor - 1), y:self.offset.y * zoomFactor + sv.bounds.height / 2 * (zoomFactor - 1))
+        //sv.contentOffset = CGPoint(x:self.offset.x * zoomFactor + sv.bounds.width / 2 * (zoomFactor - 1), y:self.offset.y * zoomFactor + sv.bounds.height / 2 * (zoomFactor - 1))
         
-        
+        //affine transform was updated on view to make only x-zooming
+        sv.contentOffset = CGPoint(x:self.offset.x * zoomFactor + sv.bounds.width / 2 * (zoomFactor - 1), y:sv.contentOffset.y)
         //update progress counter but with special values
         
         //to get the progress meter correct, the
@@ -199,7 +200,23 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //mark actions
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GoToFitSegue"
+        {
+            if let destinationVC = segue.destinationViewController as? FittingViewController {
+                destinationVC.progressCounter = self.progress
+                
+                let leftPoint = header + Int(self.progress / 100 * Float(arr.count))
+                let rightPoint = leftPoint + Int(Float(arr.count) * Float(sv.bounds.width / sv.contentSize.width))
+                print (leftPoint, rightPoint, arr.count, sv.bounds.width, sv.contentSize.width) //these points are all wrong compared to whats on the screen but getting there.
+                //let pointRange = (leftPoint, rightPoint)
+                let fitSlice = Array(self.arr[leftPoint..<rightPoint]) //still seems like it takes too much but why???
+                print (fitSlice.count, sv.bounds.width / sv.contentSize.width)
+                destinationVC.pointsToFit = fitSlice
+                
+            }
+        }
+    }
     
     //add vertical zoom?
 
@@ -217,7 +234,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         //redraw the view
         self.traceView(arr)
-        sv.zoomScale *= 2
+        
         print ("redrawn", sv.contentOffset)
         sv.contentOffset = CGPoint (x: self.offset.x * v.tDrawScale, y: self.offset.y)
     }
