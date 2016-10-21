@@ -72,7 +72,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Fit"/>
                                 <connections>
-                                    <segue destination="6Sd-DR-cLT" kind="presentation" identifier="GoToFitSegue" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="rRT-PM-Ae7"/>
+                                    <action selector="Fit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="31F-ci-8bZ"/>
+                                    <segue destination="6Sd-DR-cLT" kind="show" identifier="FitViewSegue" id="lbk-xS-2sk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -123,6 +124,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="6vy-Zi-ofk"/>
                     <connections>
                         <outlet property="progressLabel" destination="iC6-71-Vzh" id="wAp-0r-8cL"/>
                         <outlet property="sv" destination="wmA-pc-1e8" id="bN4-zq-ymc"/>
@@ -131,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="183" y="155"/>
+            <point key="canvasLocation" x="942" y="155"/>
         </scene>
         <!--Fitting View-->
         <scene sceneID="fWD-dN-dIY">
@@ -157,7 +159,6 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="goBack:" destination="6Sd-DR-cLT" eventType="touchUpInside" id="Sdb-17-bwy"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Vsh-wz-woW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Fitting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-TX-Sog">
@@ -173,48 +174,46 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cvk-2Y-y94" firstAttribute="top" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="42" id="4aC-un-6Tg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Hwh-Es-NiN" secondAttribute="trailing" constant="18" id="4af-vV-Bi2"/>
+                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="top" secondItem="pI9-TX-Sog" secondAttribute="bottom" constant="49" id="63V-nR-oRI"/>
+                            <constraint firstAttribute="bottom" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="115" id="6eu-AD-sen"/>
                             <constraint firstItem="I8c-zN-Ikn" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="27" id="URP-Ml-Dbt"/>
-                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="centerX" secondItem="fHK-W8-i3O" secondAttribute="centerX" id="WGl-Pc-AV2"/>
+                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="18" id="UvX-AD-HOq"/>
                             <constraint firstItem="VJX-cb-k8a" firstAttribute="top" secondItem="cvk-2Y-y94" secondAttribute="bottom" constant="14" id="Zea-Pj-U1E"/>
-                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="19" id="b4C-5f-A4x"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cvk-2Y-y94" secondAttribute="trailing" constant="38" id="iCP-LK-7BG"/>
-                            <constraint firstItem="cvk-2Y-y94" firstAttribute="top" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="24" id="pfQ-YG-MOU"/>
+                            <constraint firstItem="cvk-2Y-y94" firstAttribute="top" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="42" id="rKA-0l-Qni"/>
                             <constraint firstItem="pI9-TX-Sog" firstAttribute="top" secondItem="fHK-W8-i3O" secondAttribute="topMargin" constant="13" id="sPI-3h-GR7"/>
                             <constraint firstItem="VJX-cb-k8a" firstAttribute="top" secondItem="I8c-zN-Ikn" secondAttribute="bottom" constant="39" id="tFf-Nw-fa2"/>
-                            <constraint firstAttribute="bottom" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="115" id="tz9-wN-tYQ"/>
                             <constraint firstItem="pI9-TX-Sog" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="13" id="vL3-jj-oZ8"/>
-                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="top" secondItem="pI9-TX-Sog" secondAttribute="bottom" constant="49" id="yxU-Lb-Mce"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="sPI-3h-GR7"/>
                                 <exclude reference="vL3-jj-oZ8"/>
-                                <exclude reference="WGl-Pc-AV2"/>
-                                <exclude reference="b4C-5f-A4x"/>
-                                <exclude reference="tz9-wN-tYQ"/>
-                                <exclude reference="yxU-Lb-Mce"/>
+                                <exclude reference="4af-vV-Bi2"/>
+                                <exclude reference="63V-nR-oRI"/>
+                                <exclude reference="6eu-AD-sen"/>
+                                <exclude reference="UvX-AD-HOq"/>
                                 <exclude reference="URP-Ml-Dbt"/>
                                 <exclude reference="Zea-Pj-U1E"/>
                                 <exclude reference="tFf-Nw-fa2"/>
-                                <exclude reference="4aC-un-6Tg"/>
                                 <exclude reference="iCP-LK-7BG"/>
+                                <exclude reference="rKA-0l-Qni"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
                             <mask key="constraints">
                                 <include reference="sPI-3h-GR7"/>
                                 <include reference="vL3-jj-oZ8"/>
-                                <include reference="WGl-Pc-AV2"/>
-                                <include reference="b4C-5f-A4x"/>
-                                <include reference="tz9-wN-tYQ"/>
-                                <include reference="yxU-Lb-Mce"/>
+                                <include reference="4af-vV-Bi2"/>
+                                <include reference="63V-nR-oRI"/>
+                                <include reference="6eu-AD-sen"/>
+                                <include reference="UvX-AD-HOq"/>
                                 <include reference="URP-Ml-Dbt"/>
                                 <include reference="Zea-Pj-U1E"/>
                                 <include reference="tFf-Nw-fa2"/>
-                                <include reference="4aC-un-6Tg"/>
                                 <include reference="iCP-LK-7BG"/>
-                                <exclude reference="pfQ-YG-MOU"/>
+                                <include reference="rKA-0l-Qni"/>
                             </mask>
                         </variation>
                     </view>
@@ -226,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgE-OJ-sE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="919.5" y="155"/>
+            <point key="canvasLocation" x="1678.5" y="155"/>
         </scene>
     </scenes>
 </document>

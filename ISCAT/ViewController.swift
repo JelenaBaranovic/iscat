@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerDelegate {
 
     @IBOutlet weak var sv: UIScrollView!
     @IBOutlet weak var zoomButton: UIButton!
@@ -16,13 +16,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var progressLabel: UILabel!
     
 
+
     let v = TraceDisplay() //content view
     let ld = TraceIO()     //file retrieval
   
     let header = 3000       //axograph
     let tStart = 0
     
-    let basicChunk : CGFloat = 1000     // points in a base chunk of data
+    let basicChunk : CGFloat = 100     // points in a base chunk of data
     
     var pointIndex : Int = 0
     var tScale = 1          //this is terrible mixing up t and x
@@ -31,6 +32,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var xp : CGFloat = 0    //the xposn of the trace
     var originalZoom = CGFloat(1)
     var originalContentSize = CGSize()
+    var traceLength : Int?
     
     var progress = Float()
     
@@ -53,22 +55,22 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func traceView(arr: [Int16]) {
-        let traceLength = arr.count
+        traceLength = arr.count
         
         
         var firstPoint = CGPoint(x:xp, y:200)
         var drawnPoint = CGPoint(x:xp, y:200)
         
         let chunk = Int (basicChunk / v.tDrawScale )
-        let chunkN = (traceLength - header) / chunk         // the number of chunks to display
-        let step = ceil(2 / Double(v.tDrawScale))
+        let chunkN = (traceLength! - header) / chunk         // the number of chunks to display
+        let step = ceil(1 / Double(v.tDrawScale))
         
         print (step, chunkN, chunkN * chunk, traceLength)
         
         sv.backgroundColor = UIColor.whiteColor()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.minimumZoomScale = 0.2
-        sv.maximumZoomScale = 5
+        sv.minimumZoomScale = 0.1
+        sv.maximumZoomScale = 10
         
         if sv != nil {
             sv.delegate = self
@@ -80,7 +82,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             //chunk label
             let lab = UILabel()
-            lab.text = "This chunk is #\(i+1)"
+            lab.text = "C\(i+1)"
             lab.sizeToFit()
             lab.frame.origin = CGPointMake(xp, 100)
             v.addSubview(lab)
@@ -198,21 +200,29 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         progressLabel.text = String(format:"%.0f%%", progress)
         
     }
-    
+    @IBAction func Fit(sender: AnyObject) {
+    }
     //mark actions
+    
+    func FitVCDidFinish(controller: FittingViewController, touches: Int) {
+        print (touches)
+        controller.dismissViewControllerAnimated(false, completion: nil )
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "GoToFitSegue"
+        if segue.identifier == "FitViewSegue"
         {
             if let destinationVC = segue.destinationViewController as? FittingViewController {
-                destinationVC.progressCounter = self.progress
-                
-                let leftPoint = header + Int(self.progress / 100 * Float(arr.count))
-                let rightPoint = leftPoint + Int(Float(arr.count) * Float(sv.bounds.width / sv.contentSize.width))
+                destinationVC.progressCounter = self.progress           //progress excludes the header
+                let dataLength = Float(traceLength! - header)
+                let leftPoint = header + Int(self.progress / 100 * dataLength)
+                let rightPoint = leftPoint + Int(dataLength * Float(sv.bounds.width / sv.contentSize.width))
                 print (leftPoint, rightPoint, arr.count, sv.bounds.width, sv.contentSize.width) //these points are all wrong compared to whats on the screen but getting there.
                 //let pointRange = (leftPoint, rightPoint)
                 let fitSlice = Array(self.arr[leftPoint..<rightPoint]) //still seems like it takes too much but why???
-                print (fitSlice.count, sv.bounds.width / sv.contentSize.width)
+                print (fitSlice.count, sv.bounds.width / sv.contentSize.width, dataLength * Float(sv.bounds.width / sv.contentSize.width) )
                 destinationVC.pointsToFit = fitSlice
+                destinationVC.delegate = self
                 
             }
         }

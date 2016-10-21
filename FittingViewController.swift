@@ -8,11 +8,15 @@
 
 import UIKit
 
+protocol FitViewControllerDelegate {
+    func FitVCDidFinish(controller: FittingViewController, touches:Int)
+}
+
 class FittingViewController: UIViewController {
 
     var progressCounter : Float = 0
     var pointsToFit : [Int16] = []
-    
+    var delegate: FitViewControllerDelegate? = nil
     
     @IBOutlet weak var FitView: UIView!
     @IBOutlet weak var positionLabel: UILabel!
@@ -22,9 +26,13 @@ class FittingViewController: UIViewController {
     func traceView(arr: [Int16]) {
         //let traceLength = arr.count
         
-        
-        let firstPoint = CGPoint(x:0, y:300)
-        var drawnPoint = CGPoint(x:0, y:200)
+        //assuming a window of around 1000*500
+        //would be nice just to take these from the layout but couldn't work out how to do it.
+        let yPlotOffset = CGFloat(200)
+        let viewWidth = CGFloat(900)
+        let traceHeight = CGFloat(400)
+        let firstPoint = CGPoint(x:0, y:yPlotOffset)
+        var drawnPoint = CGPoint(x:0, y:yPlotOffset)
         
         
         FitView.backgroundColor = UIColor.whiteColor()
@@ -34,11 +42,10 @@ class FittingViewController: UIViewController {
         let thickness: CGFloat = 2.0
         let tracePath = UIBezierPath()
         tracePath.moveToPoint(firstPoint)
-        
+        print ("traceview", pointsToFit.count)
         for (index,point) in pointsToFit.enumerate() {
         
-            //xp is separately scaled by tDrawScale
-            drawnPoint = CGPoint(x: FitView.bounds.width * CGFloat(index) / CGFloat(pointsToFit.count) , y: CGFloat(300) * (1.0 + CGFloat(point)) / 32536.0)
+            drawnPoint = CGPoint(x: viewWidth * CGFloat(index) / CGFloat(pointsToFit.count) , y: yPlotOffset + traceHeight * CGFloat(point) / 32536.0)
             tracePath.addLineToPoint(drawnPoint)
             
         }
@@ -60,7 +67,7 @@ class FittingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print ("after segue", pointsToFit.count)
+        
         
         traceView(pointsToFit)
         
@@ -82,7 +89,7 @@ class FittingViewController: UIViewController {
     
     @IBAction func goBack(sender: AnyObject) {
         print ("button")
-        
+        delegate?.FitVCDidFinish(self, touches: 8)
         //zoom gets reset and so on
     }
   
