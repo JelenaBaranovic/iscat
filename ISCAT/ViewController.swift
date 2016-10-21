@@ -131,7 +131,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         //Load the trace
         let trace = getTrace()
         //print (trace[0])
-        traceView(trace)
+        traceView(arr: trace)
         sv.bouncesZoom = false
         updateLabels()
         
