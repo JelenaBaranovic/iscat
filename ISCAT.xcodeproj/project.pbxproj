@@ -15,7 +15,7 @@
 		491A7CF41D4CE2040017D238 /* ISCATTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7CF31D4CE2040017D238 /* ISCATTests.swift */; };
 		491A7D011D4D06510017D238 /* TraceIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7D001D4D06510017D238 /* TraceIO.swift */; };
 		4947561E1D4D59FD00C485DB /* sim1600.bin in Resources */ = {isa = PBXBuildFile; fileRef = 4947561D1D4D59FD00C485DB /* sim1600.bin */; };
-		49FAED371D6B38D000876B09 /* TraceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FAED361D6B38D000876B09 /* TraceDisplay.swift */; };
+		49529B1B1DBA2BA2006CF048 /* TraceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */; };
 		49FAED3B1D6E096400876B09 /* FittingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FAED3A1D6E096400876B09 /* FittingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		491A7CF51D4CE2040017D238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		491A7D001D4D06510017D238 /* TraceIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceIO.swift; sourceTree = "<group>"; };
 		4947561D1D4D59FD00C485DB /* sim1600.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sim1600.bin; sourceTree = "<group>"; };
-		49FAED361D6B38D000876B09 /* TraceDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TraceDisplay.swift; path = ../../../../.Trash/TraceDisplay.swift; sourceTree = "<group>"; };
+		49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceDisplay.swift; sourceTree = "<group>"; };
 		49FAED3A1D6E096400876B09 /* FittingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FittingViewController.swift; path = ../FittingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +90,7 @@
 				491A7CDE1D4CE2030017D238 /* AppDelegate.swift */,
 				491A7D001D4D06510017D238 /* TraceIO.swift */,
 				491A7CE01D4CE2030017D238 /* ViewController.swift */,
-				49FAED361D6B38D000876B09 /* TraceDisplay.swift */,
+				49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */,
 				49FAED3A1D6E096400876B09 /* FittingViewController.swift */,
 				491A7CE51D4CE2030017D238 /* Assets.xcassets */,
 				491A7CEA1D4CE2030017D238 /* Info.plist */,
@@ -213,11 +213,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49529B1B1DBA2BA2006CF048 /* TraceDisplay.swift in Sources */,
 				491A7CE11D4CE2030017D238 /* ViewController.swift in Sources */,
 				491A7CDF1D4CE2030017D238 /* AppDelegate.swift in Sources */,
 				49FAED3B1D6E096400876B09 /* FittingViewController.swift in Sources */,
 				491A7D011D4D06510017D238 /* TraceIO.swift in Sources */,
-				49FAED371D6B38D000876B09 /* TraceDisplay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

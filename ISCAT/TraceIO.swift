@@ -12,16 +12,16 @@ class TraceIO {
     
     func loadData() -> [Int16] {
         //*read binary data from disk
-        let bundle = NSBundle.mainBundle()
-        let dataPath :String = bundle.pathForResource("sim1600", ofType: "bin")!
+        let bundle = Bundle.main
+        let dataPath :String = bundle.path(forResource: "sim1600", ofType: "bin")!
         let readData = NSData (contentsOfFile: dataPath)
         print("read the data")
         
-        let count = readData!.length / sizeof(Int16) //assume data format
+        let count = readData!.length / MemoryLayout<Int16>.size //assume data format
         
-        var arrayTrace = [Int16](count: count, repeatedValue: 0)
+        var arrayTrace = [Int16](repeating: 0, count: count)
         
-        readData!.getBytes(&arrayTrace, length:count * sizeof(Int16))
+        readData!.getBytes(&arrayTrace, length:count * MemoryLayout<Int16>.size)
         
         return arrayTrace
 

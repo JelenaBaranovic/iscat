@@ -67,7 +67,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         
         print (step, chunkN, chunkN * chunk, traceLength)
         
-        sv.backgroundColor = UIColor.whiteColor()
+        sv.backgroundColor = UIColor.white
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.minimumZoomScale = 0.1
         sv.maximumZoomScale = 10
@@ -84,22 +84,22 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
             let lab = UILabel()
             lab.text = "C\(i+1)"
             lab.sizeToFit()
-            lab.frame.origin = CGPointMake(xp, 100)
+            lab.frame.origin = CGPoint(x:xp, y:100)
             v.addSubview(lab)
             
             //drawing trace
             let thickness: CGFloat = 2.0
             let tracePath = UIBezierPath()
-            tracePath.moveToPoint(firstPoint)
+            tracePath.move(to: firstPoint)
             
-            for index in 0.stride(to: chunk, by: Int(step))  {
+            for index in stride(from:0, to: chunk, by: Int(step))  {
                 
                 pointIndex = index + header + tStart + i * chunk
                 
                 //xp is separately scaled by tDrawScale
                 drawnPoint = CGPoint(x: xp + v.tDrawScale * CGFloat(index), y: CGFloat(200) * (1.0 + CGFloat(arr[pointIndex]) / 32536.0))
                 
-                tracePath.addLineToPoint(drawnPoint)
+                tracePath.addLine(to: drawnPoint)
                 
             }
             
@@ -109,8 +109,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
             
             // render to layer
             let traceLayer = CAShapeLayer()
-            traceLayer.path = tracePath.CGPath
-            traceLayer.strokeColor = UIColor.blackColor().CGColor
+            traceLayer.path = tracePath.cgPath
+            traceLayer.strokeColor = UIColor.black.cgColor
             traceLayer.fillColor = nil
             traceLayer.lineWidth = thickness
             v.layer.addSublayer(traceLayer)             //accumulate a bunch of anonymous layers.
@@ -150,14 +150,14 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //print ("scrolled", sv.contentOffset)
         updateLabels()
-        sv.userInteractionEnabled = true
+        sv.isUserInteractionEnabled = true
         
     }
     
-    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
     
         
         var sz = sv.bounds.size
@@ -169,11 +169,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         
         
         //print ("content size after resize", sv.contentSize.width, "offset after resize" , sv.contentOffset.x)
-        sv.userInteractionEnabled = true
+        sv.isUserInteractionEnabled = true
     }
     
     
-    func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
    
         self.offset = sv.contentOffset
         self.originalZoom = sv.zoomScale //needed to keep the view centred
@@ -182,7 +182,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         //print ("begin zoom", self.offset, self.originalZoom)
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
         //print("scrollViewDidZoom")
         
         let zoomFactor = (sv.zoomScale / self.originalZoom)   // relative to original zoom during transition
@@ -206,13 +206,13 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     
     func FitVCDidFinish(controller: FittingViewController, touches: Int) {
         print (touches)
-        controller.dismissViewControllerAnimated(false, completion: nil )
+        controller.dismiss(animated: false, completion: nil )
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "FitViewSegue"
         {
-            if let destinationVC = segue.destinationViewController as? FittingViewController {
+            if let destinationVC = segue.destination as? FittingViewController {
                 destinationVC.progressCounter = self.progress           //progress excludes the header
                 let dataLength = Float(traceLength! - header)
                 let leftPoint = header + Int(self.progress / 100 * dataLength)
@@ -243,7 +243,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
          //add display of zoom factor
         
         //redraw the view
-        self.traceView(arr)
+        self.traceView(arr: arr)
         
         print ("redrawn", sv.contentOffset)
         sv.contentOffset = CGPoint (x: self.offset.x * v.tDrawScale, y: self.offset.y)
@@ -258,7 +258,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         //add display of zoom factor
         
         //redraw the view
-        self.traceView(arr)
+        self.traceView(arr: arr)
     }
   
 

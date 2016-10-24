@@ -35,26 +35,26 @@ class FittingViewController: UIViewController {
         var drawnPoint = CGPoint(x:0, y:yPlotOffset)
         
         
-        FitView.backgroundColor = UIColor.whiteColor()
+        FitView.backgroundColor = UIColor.white
         FitView.translatesAutoresizingMaskIntoConstraints = false
             
         //drawing trace
         let thickness: CGFloat = 2.0
         let tracePath = UIBezierPath()
-        tracePath.moveToPoint(firstPoint)
+        tracePath.move(to: firstPoint)
         print ("traceview", pointsToFit.count)
-        for (index,point) in pointsToFit.enumerate() {
+        for (index,point) in pointsToFit.enumerated() {
         
             drawnPoint = CGPoint(x: viewWidth * CGFloat(index) / CGFloat(pointsToFit.count) , y: yPlotOffset + traceHeight * CGFloat(point) / 32536.0)
-            tracePath.addLineToPoint(drawnPoint)
+            tracePath.addLine(to: drawnPoint)
             
         }
         
        
         // render to layer
         let traceLayer = CAShapeLayer()
-        traceLayer.path = tracePath.CGPath
-        traceLayer.strokeColor = UIColor.blackColor().CGColor
+        traceLayer.path = tracePath.cgPath
+        traceLayer.strokeColor = UIColor.black.cgColor
         traceLayer.fillColor = nil
         traceLayer.lineWidth = thickness
         FitView.layer.addSublayer(traceLayer)
@@ -69,7 +69,7 @@ class FittingViewController: UIViewController {
         super.viewDidLoad()
         
         
-        traceView(pointsToFit)
+        traceView(arr: pointsToFit)
         
         positionLabel.text = "Position in trace \(progressCounter) %"
         //print (pointsToFit [10])
@@ -77,7 +77,7 @@ class FittingViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
     }
@@ -89,7 +89,7 @@ class FittingViewController: UIViewController {
     
     @IBAction func goBack(sender: AnyObject) {
         print ("button")
-        delegate?.FitVCDidFinish(self, touches: 8)
+        delegate?.FitVCDidFinish(controller: self, touches: 8)
         //zoom gets reset and so on
     }
   
