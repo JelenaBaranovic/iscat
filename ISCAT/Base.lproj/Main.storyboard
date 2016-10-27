@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyE-K9-wXX">
@@ -72,12 +72,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Fit"/>
                                 <connections>
-                                    <action selector="Fit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="31F-ci-8bZ"/>
-                                    <segue destination="6Sd-DR-cLT" kind="show" identifier="FitViewSegue" id="lbk-xS-2sk"/>
+                                    <segue destination="6Sd-DR-cLT" kind="show" identifier="FitViewSegue" id="BeS-ek-AL7"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kFZ-EM-0YM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="69" id="3Fn-77-MZk"/>
                             <constraint firstItem="Pvm-vK-P7b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="33" id="5o7-kZ-y99"/>
@@ -108,9 +108,9 @@
                                 <exclude reference="8Q7-8N-xkF"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="WZc-Qt-0xZ"/>
-                                <exclude reference="e5k-QM-K8a"/>
                                 <exclude reference="tvK-ag-Jfx"/>
+                                <exclude reference="e5k-QM-K8a"/>
+                                <exclude reference="WZc-Qt-0xZ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -118,9 +118,9 @@
                                 <include reference="8Q7-8N-xkF"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="WZc-Qt-0xZ"/>
-                                <include reference="e5k-QM-K8a"/>
                                 <include reference="tvK-ag-Jfx"/>
+                                <include reference="e5k-QM-K8a"/>
+                                <include reference="WZc-Qt-0xZ"/>
                             </mask>
                         </variation>
                     </view>
@@ -135,6 +135,62 @@
             </objects>
             <point key="canvasLocation" x="942" y="155"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="zI3-4r-jdI">
+            <objects>
+                <tableViewController id="cnP-0p-brG" userLabel="Settings View Controller" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Ib-xm-1iG" userLabel="Settings and IO">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IqD-lU-JUu">
+                                <rect key="frame" x="0.0" y="28" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IqD-lU-JUu" id="v2e-5G-cnn">
+                                    <frame key="frameInset" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cnP-0p-brG" id="i5B-eg-xnN"/>
+                            <outlet property="delegate" destination="cnP-0p-brG" id="9ma-9s-aen"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ou5-Lp-nDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="941" y="827"/>
+        </scene>
+        <!--Events View Controller-->
+        <scene sceneID="x2d-7W-l9n">
+            <objects>
+                <tableViewController id="QAH-eW-rCg" userLabel="Events View Controller" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1dt-Bz-SP1" userLabel="Events and Fit List">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BhV-b8-N0Q">
+                                <rect key="frame" x="0.0" y="28" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BhV-b8-N0Q" id="s3B-8E-23B">
+                                    <frame key="frameInset" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QAH-eW-rCg" id="JO9-rP-Jz7"/>
+                            <outlet property="delegate" destination="QAH-eW-rCg" id="adz-M3-Jzh"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="81t-Nu-L03" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="827"/>
+        </scene>
         <!--Fitting View-->
         <scene sceneID="fWD-dN-dIY">
             <objects>
@@ -144,31 +200,31 @@
                         <viewControllerLayoutGuide type="bottom" id="VJX-cb-k8a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fHK-W8-i3O">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-zN-Ikn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-zN-Ikn">
                                 <frame key="frameInset" minX="158" minY="528" width="312" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvk-2Y-y94">
-                                <frame key="frameInset" minX="493" minY="521" width="72" height="59"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="goBack:" destination="6Sd-DR-cLT" eventType="touchUpInside" id="Sdb-17-bwy"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Fitting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-TX-Sog">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fitting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-TX-Sog">
                                 <frame key="frameInset" minX="33" minY="20" width="48" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hwh-Es-NiN">
-                                <frame key="frameInset" minX="33" minY="49" width="532" height="471"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvk-2Y-y94">
+                                <frame key="frameInset" minX="759" minY="519" width="72" height="59"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="goBack:" destination="6Sd-DR-cLT" eventType="touchUpInside" id="lN2-Dv-AZO"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hwh-Es-NiN">
+                                <frame key="frameInset" minX="118" minY="146" width="532" height="471"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -195,10 +251,10 @@
                                 <exclude reference="6eu-AD-sen"/>
                                 <exclude reference="UvX-AD-HOq"/>
                                 <exclude reference="URP-Ml-Dbt"/>
-                                <exclude reference="Zea-Pj-U1E"/>
-                                <exclude reference="tFf-Nw-fa2"/>
                                 <exclude reference="iCP-LK-7BG"/>
                                 <exclude reference="rKA-0l-Qni"/>
+                                <exclude reference="Zea-Pj-U1E"/>
+                                <exclude reference="tFf-Nw-fa2"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -210,10 +266,10 @@
                                 <include reference="6eu-AD-sen"/>
                                 <include reference="UvX-AD-HOq"/>
                                 <include reference="URP-Ml-Dbt"/>
-                                <include reference="Zea-Pj-U1E"/>
-                                <include reference="tFf-Nw-fa2"/>
                                 <include reference="iCP-LK-7BG"/>
                                 <include reference="rKA-0l-Qni"/>
+                                <include reference="Zea-Pj-U1E"/>
+                                <include reference="tFf-Nw-fa2"/>
                             </mask>
                         </variation>
                     </view>

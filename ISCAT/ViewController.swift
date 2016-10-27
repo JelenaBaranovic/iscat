@@ -145,7 +145,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         // Dispose of any resources that can be recreated.
     }
 
-    func viewForZoomingInScrollView(sv: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return v
         
     }
@@ -168,7 +168,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         updateLabels()
         
         
-        //print ("content size after resize", sv.contentSize.width, "offset after resize" , sv.contentOffset.x)
+        print ("content size after resize", sv.contentSize.width, "offset after resize" , sv.contentOffset.x)
         sv.isUserInteractionEnabled = true
     }
     
@@ -179,7 +179,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         self.originalZoom = sv.zoomScale //needed to keep the view centred
         self.originalContentSize = sv.contentSize
         
-        //print ("begin zoom", self.offset, self.originalZoom)
+        print ("begin zoom", self.offset, self.originalZoom)
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
@@ -200,16 +200,16 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         progressLabel.text = String(format:"%.0f%%", progress)
         
     }
-    @IBAction func Fit(sender: AnyObject) {
+    @IBAction func Fit(sender: Any) {
     }
     //mark actions
     
     func FitVCDidFinish(controller: FittingViewController, touches: Int) {
-        print (touches)
-        controller.dismiss(animated: false, completion: nil )
+        print ("Touches", touches)
+        controller.dismiss(animated: true, completion: {})
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FitViewSegue"
         {
             if let destinationVC = segue.destination as? FittingViewController {
@@ -217,7 +217,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
                 let dataLength = Float(traceLength! - header)
                 let leftPoint = header + Int(self.progress / 100 * dataLength)
                 let rightPoint = leftPoint + Int(dataLength * Float(sv.bounds.width / sv.contentSize.width))
-                print (leftPoint, rightPoint, arr.count, sv.bounds.width, sv.contentSize.width) //these points are all wrong compared to whats on the screen but getting there.
+                print (leftPoint, rightPoint, arr.count, sv.bounds.width, sv.contentSize.width) //these points are all wrong compared to whats on the screen but getting there. tooMUCH!
+                
                 //let pointRange = (leftPoint, rightPoint)
                 let fitSlice = Array(self.arr[leftPoint..<rightPoint]) //still seems like it takes too much but why???
                 print (fitSlice.count, sv.bounds.width / sv.contentSize.width, dataLength * Float(sv.bounds.width / sv.contentSize.width) )

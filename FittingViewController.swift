@@ -17,7 +17,7 @@ class FittingViewController: UIViewController {
     var progressCounter : Float = 0
     var pointsToFit : [Int16] = []
     var delegate: FitViewControllerDelegate? = nil
-    
+    let touchCount : Int = 0
     @IBOutlet weak var FitView: UIView!
     @IBOutlet weak var positionLabel: UILabel!
     
@@ -68,7 +68,7 @@ class FittingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        //let touchCount:Int = 0
         traceView(arr: pointsToFit)
         
         positionLabel.text = "Position in trace \(progressCounter) %"
@@ -87,10 +87,18 @@ class FittingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func goBack(sender: AnyObject) {
+    // recognize touches
+    
+    // recognize swipes and get coords
+    
+    // run fitting command
+    
+    
+    
+    @IBAction func goBack(_ sender: AnyObject) {
         print ("button")
-        delegate?.FitVCDidFinish(controller: self, touches: 8)
-        //zoom gets reset and so on
+        delegate?.FitVCDidFinish(controller: self, touches: touchCount)
+        
     }
   
 
