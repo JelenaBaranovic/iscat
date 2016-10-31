@@ -11,11 +11,16 @@ import Foundation
 class TraceIO {
     
     func loadData() -> [Int16] {
+        // select data type
+        
         //*read binary data from disk
+        // get path to data
+        // dropbox and other sources?
+        
         let bundle = Bundle.main
         let dataPath :String = bundle.path(forResource: "sim1600", ofType: "bin")!
         let readData = NSData (contentsOfFile: dataPath)
-        print("read the data")
+        print("Read the data in TraceIO")
         
         let count = readData!.length / MemoryLayout<Int16>.size //assume data format
         

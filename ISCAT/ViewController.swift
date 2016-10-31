@@ -14,7 +14,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     @IBOutlet weak var zoomButton: UIButton!
     @IBOutlet weak var zoomLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
-    
+    @IBOutlet weak var statusLabel: UILabel!
 
 
     let v = TraceDisplay() //content view
@@ -206,6 +206,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     
     func FitVCDidFinish(controller: FittingViewController, touches: Int) {
         print ("Touches", touches)
+        statusLabel.text = String(format:"last fit had %i downswipes", touches)
         controller.dismiss(animated: true, completion: {})
     }
     

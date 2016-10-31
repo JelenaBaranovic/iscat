@@ -17,7 +17,8 @@ class FittingViewController: UIViewController {
     var progressCounter : Float = 0
     var pointsToFit : [Int16] = []
     var delegate: FitViewControllerDelegate? = nil
-    let touchCount : Int = 0
+    var touchCount : Int = 0
+    var swipeCount : Int = 0
     @IBOutlet weak var FitView: UIView!
     @IBOutlet weak var positionLabel: UILabel!
     
@@ -93,11 +94,30 @@ class FittingViewController: UIViewController {
     
     // run fitting command
     
+ 
+    @IBAction func fitPan(_ gesture: UIPanGestureRecognizer) {
+
+        var locationOfBeganTap: CGPoint?
+        
+        var locationOfEndTap: CGPoint?
+        
+        if gesture.state == UIGestureRecognizerState.began {
+            
+            locationOfBeganTap = gesture.location(in: self.view)
+            
+        } else if gesture.state == UIGestureRecognizerState.ended {
+            
+            locationOfEndTap = gesture.location(in: self.view)
+        }
+
     
+        print ("pan", locationOfBeganTap, locationOfEndTap)
+        swipeCount += 1
+    }
     
     @IBAction func goBack(_ sender: AnyObject) {
         print ("button")
-        delegate?.FitVCDidFinish(controller: self, touches: touchCount)
+        delegate?.FitVCDidFinish(controller: self, touches: swipeCount)
         
     }
   
