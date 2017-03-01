@@ -72,7 +72,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Zoom In"/>
                                 <connections>
-                                    <action selector="zoomIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bxk-0R-WIy"/>
+                                    <action selector="zoomIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4fv-P8-MpD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,8 +111,8 @@
                                 <exclude reference="8Q7-8N-xkF"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="e5k-QM-K8a"/>
                                 <exclude reference="tvK-ag-Jfx"/>
+                                <exclude reference="e5k-QM-K8a"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -120,8 +120,8 @@
                                 <include reference="8Q7-8N-xkF"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="e5k-QM-K8a"/>
                                 <include reference="tvK-ag-Jfx"/>
+                                <include reference="e5k-QM-K8a"/>
                             </mask>
                         </variation>
                     </view>
@@ -205,74 +205,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-zN-Ikn">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fitting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-TX-Sog">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvk-2Y-y94">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvk-2Y-y94">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="goBack:" destination="6Sd-DR-cLT" eventType="touchUpInside" id="lN2-Dv-AZO"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hwh-Es-NiN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fitting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI9-TX-Sog">
+                                <frame key="frameInset" width="1000" height="1000"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hwh-Es-NiN">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="9VW-Uc-mjI" appends="YES" id="PUl-2X-ZSO"/>
+                                    <outletCollection property="gestureRecognizers" destination="OMN-Ji-Qkd" appends="YES" id="g4D-da-w5n"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-zN-Ikn">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Hwh-Es-NiN" secondAttribute="trailing" constant="18" id="4af-vV-Bi2"/>
-                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="top" secondItem="pI9-TX-Sog" secondAttribute="bottom" constant="49" id="63V-nR-oRI"/>
-                            <constraint firstAttribute="bottom" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="115" id="6eu-AD-sen"/>
-                            <constraint firstItem="I8c-zN-Ikn" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="27" id="URP-Ml-Dbt"/>
-                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="18" id="UvX-AD-HOq"/>
-                            <constraint firstItem="VJX-cb-k8a" firstAttribute="top" secondItem="cvk-2Y-y94" secondAttribute="bottom" constant="14" id="Zea-Pj-U1E"/>
+                            <constraint firstItem="I8c-zN-Ikn" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leading" constant="20" id="BiK-Ta-Eix"/>
+                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="top" secondItem="fHK-W8-i3O" secondAttribute="topMargin" constant="50" id="EqP-Ym-pUN"/>
+                            <constraint firstItem="cvk-2Y-y94" firstAttribute="top" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="8" id="Q5t-ME-OH4"/>
+                            <constraint firstItem="VJX-cb-k8a" firstAttribute="top" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="50" id="ZEf-Cz-PTj"/>
+                            <constraint firstItem="Hwh-Es-NiN" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="20" id="ewJ-Cb-Jl0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cvk-2Y-y94" secondAttribute="trailing" constant="38" id="iCP-LK-7BG"/>
-                            <constraint firstItem="cvk-2Y-y94" firstAttribute="top" secondItem="Hwh-Es-NiN" secondAttribute="bottom" constant="42" id="rKA-0l-Qni"/>
+                            <constraint firstAttribute="bottom" secondItem="I8c-zN-Ikn" secondAttribute="bottom" constant="-9" id="laN-bL-PHA"/>
                             <constraint firstItem="pI9-TX-Sog" firstAttribute="top" secondItem="fHK-W8-i3O" secondAttribute="topMargin" constant="13" id="sPI-3h-GR7"/>
-                            <constraint firstItem="VJX-cb-k8a" firstAttribute="top" secondItem="I8c-zN-Ikn" secondAttribute="bottom" constant="39" id="tFf-Nw-fa2"/>
                             <constraint firstItem="pI9-TX-Sog" firstAttribute="leading" secondItem="fHK-W8-i3O" secondAttribute="leadingMargin" constant="13" id="vL3-jj-oZ8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="4af-vV-Bi2"/>
+                                <exclude reference="iCP-LK-7BG"/>
                                 <exclude reference="sPI-3h-GR7"/>
                                 <exclude reference="vL3-jj-oZ8"/>
-                                <exclude reference="4af-vV-Bi2"/>
-                                <exclude reference="63V-nR-oRI"/>
-                                <exclude reference="6eu-AD-sen"/>
-                                <exclude reference="UvX-AD-HOq"/>
-                                <exclude reference="URP-Ml-Dbt"/>
-                                <exclude reference="Zea-Pj-U1E"/>
-                                <exclude reference="tFf-Nw-fa2"/>
-                                <exclude reference="iCP-LK-7BG"/>
-                                <exclude reference="rKA-0l-Qni"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
                             <mask key="constraints">
+                                <include reference="4af-vV-Bi2"/>
+                                <include reference="iCP-LK-7BG"/>
                                 <include reference="sPI-3h-GR7"/>
                                 <include reference="vL3-jj-oZ8"/>
-                                <include reference="4af-vV-Bi2"/>
-                                <include reference="63V-nR-oRI"/>
-                                <include reference="6eu-AD-sen"/>
-                                <include reference="UvX-AD-HOq"/>
-                                <include reference="URP-Ml-Dbt"/>
-                                <include reference="Zea-Pj-U1E"/>
-                                <include reference="tFf-Nw-fa2"/>
-                                <include reference="iCP-LK-7BG"/>
-                                <include reference="rKA-0l-Qni"/>
                             </mask>
                         </variation>
                     </view>
@@ -283,13 +271,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgE-OJ-sE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="9VW-Uc-mjI">
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="OMN-Ji-Qkd">
                     <connections>
-                        <action selector="fitPan:" destination="6Sd-DR-cLT" id="yO4-iT-PTw"/>
+                        <action selector="fitPan:" destination="6Sd-DR-cLT" id="Iz6-cV-TyM"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1678.125" y="154.6875"/>
+            <point key="canvasLocation" x="1677.5390625" y="154.6875"/>
         </scene>
     </scenes>
 </document>

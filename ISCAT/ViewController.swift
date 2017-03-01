@@ -36,11 +36,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     
     var progress = Float()
     
-    var arr = [Int16]() //  this array will hold the trace data
+    var traceArray = [Int16]() //  this array will hold the trace data
     
     func getTrace() -> [Int16] {
-        arr = ld.loadData()
-        return arr
+        traceArray = ld.loadData()
+        return traceArray
         
     }
     
@@ -51,6 +51,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
             progress = 0
         }
         progressLabel.text = String(format:"%.1f%%", progress)
+        
+    }
+    
+    func traceDraw() {
         
     }
     
@@ -139,7 +143,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     }
 
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -197,7 +200,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         progress = 100 * Float(sv.contentOffset.x) / Float(self.originalContentSize.width * zoomFactor)
         
         
-        progressLabel.text = String(format:"%.0f%%", progress)
+        updateLabels()
         
     }
     @IBAction func Fit(sender: Any) {
@@ -206,7 +209,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     
     func FitVCDidFinish(controller: FittingViewController, touches: Int) {
         print ("Touches", touches)
-        statusLabel.text = String(format:"last fit had %i downswipes", touches)
+        statusLabel.text = String(format:"last fit had %i events", touches)
         controller.dismiss(animated: true, completion: {})
     }
     
@@ -218,10 +221,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
                 let dataLength = Float(traceLength! - header)
                 let leftPoint = header + Int(self.progress / 100 * dataLength)
                 let rightPoint = leftPoint + Int(dataLength * Float(sv.bounds.width / sv.contentSize.width))
-                print (leftPoint, rightPoint, arr.count, sv.bounds.width, sv.contentSize.width) //these points are all wrong compared to whats on the screen but getting there. tooMUCH!
+                print (leftPoint, rightPoint, traceArray.count, sv.bounds.width, sv.contentSize.width) //these points are all wrong compared to whats on the screen but getting there. tooMUCH!
                 
                 //let pointRange = (leftPoint, rightPoint)
-                let fitSlice = Array(self.arr[leftPoint..<rightPoint]) //still seems like it takes too much but why???
+                let fitSlice = Array(self.traceArray[leftPoint..<rightPoint]) //still seems like it takes too much but why???
                 print (fitSlice.count, sv.bounds.width / sv.contentSize.width, dataLength * Float(sv.bounds.width / sv.contentSize.width) )
                 destinationVC.pointsToFit = fitSlice
                 destinationVC.delegate = self
@@ -233,25 +236,27 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     //add vertical zoom?
 
     
-    @IBAction func zoomIn(sender: UIButton) {
+    //if this code executes, trace display disappears but otherwise app still runs
+    @IBAction func zoomIn(_ sender: UIButton) {
+    
         //need to put a defensive limit in here to avoid overshoot
         self.offset = sv.contentOffset
         print ("hard zooming", self.offset)
         v.tDrawScale *= 2       //increase the horizontal zoom factor
-        v.layer.sublayers = nil //kill all the existing layes (ALL!!!)
-        
+        v.layer.sublayers = nil //kill all the existing layers (ALL!!!)
         
         
          //add display of zoom factor
         
         //redraw the view
-        self.traceView(arr: arr)
+        traceView(arr: traceArray)
         
         print ("redrawn", sv.contentOffset)
         sv.contentOffset = CGPoint (x: self.offset.x * v.tDrawScale, y: self.offset.y)
     }
 
-    @IBAction func zoomOut(sender: UIButton) {
+    //if this code executes, trace display disappears but otherwise app still runs
+    @IBAction func zoomOut(_ sender: UIButton) {
         //need to put a defensive limit in here to avoid undershoot (data disappears!)
         
         v.tDrawScale /= 2           //reduce the horizontal zoom factor
@@ -260,7 +265,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         //add display of zoom factor
         
         //redraw the view
-        self.traceView(arr: arr)
+        traceView(arr: traceArray)
     }
   
 
