@@ -69,7 +69,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         let chunkN = (traceLength! - header) / chunk         // the number of chunks to display
         let step = ceil(1 / Double(v.tDrawScale))
         
-        print (step, chunkN, chunkN * chunk, traceLength)
+        print (step, chunkN, chunkN * chunk, traceLength!)
         
         sv.backgroundColor = UIColor.white
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -207,9 +207,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     }
     //mark actions
     
-    func FitVCDidFinish(controller: FittingViewController, touches: Int) {
+    func FitVCDidFinish(controller: FittingViewController, touches: Int, fit:eventList) {
         print ("Touches", touches)
-        statusLabel.text = String(format:"last fit had %i events", touches)
+        print ("Fit", fit)
+        statusLabel.text = String(format:"last fit: %@",fit.consolePrintable())
         controller.dismiss(animated: true, completion: {})
     }
     
