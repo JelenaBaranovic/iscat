@@ -20,6 +20,7 @@
 		4947561E1D4D59FD00C485DB /* sim1600.bin in Resources */ = {isa = PBXBuildFile; fileRef = 4947561D1D4D59FD00C485DB /* sim1600.bin */; };
 		49529B1B1DBA2BA2006CF048 /* TraceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */; };
 		4964D7E91E7198F500078EF9 /* FittingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964D7E81E7198F500078EF9 /* FittingViewController.swift */; };
+		4964D7EB1E71997900078EF9 /* iscat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4964D7EA1E71997900078EF9 /* iscat.plist */; };
 		49C8B5431E69A02D005455CB /* Gaussian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8B5421E69A02D005455CB /* Gaussian.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		4947561D1D4D59FD00C485DB /* sim1600.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sim1600.bin; sourceTree = "<group>"; };
 		49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceDisplay.swift; sourceTree = "<group>"; };
 		4964D7E81E7198F500078EF9 /* FittingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FittingViewController.swift; sourceTree = "<group>"; };
+		4964D7EA1E71997900078EF9 /* iscat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = iscat.plist; sourceTree = "<group>"; };
 		49C8B5421E69A02D005455CB /* Gaussian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gaussian.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 		491A7CD21D4CE2030017D238 = {
 			isa = PBXGroup;
 			children = (
+				4964D7EA1E71997900078EF9 /* iscat.plist */,
 				491A7CDD1D4CE2030017D238 /* ISCAT */,
 				491A7CF21D4CE2040017D238 /* ISCATTests */,
 				491A7CDC1D4CE2030017D238 /* Products */,
@@ -215,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4964D7EB1E71997900078EF9 /* iscat.plist in Resources */,
 				491A7CE91D4CE2030017D238 /* LaunchScreen.storyboard in Resources */,
 				491A7CE61D4CE2030017D238 /* Assets.xcassets in Resources */,
 				4947561E1D4D59FD00C485DB /* sim1600.bin in Resources */,
