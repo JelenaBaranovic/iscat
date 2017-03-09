@@ -15,11 +15,12 @@
 		491A7CF41D4CE2040017D238 /* ISCATTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7CF31D4CE2040017D238 /* ISCATTests.swift */; };
 		491A7D011D4D06510017D238 /* TraceIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7D001D4D06510017D238 /* TraceIO.swift */; };
 		491E127D1E6DA289004A1EE2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491E127C1E6DA289004A1EE2 /* Event.swift */; };
-		493DDD7E1E718D6700F5E12F /* cartfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 493DDD7D1E718D6700F5E12F /* cartfile.txt */; };
+		493DDD811E71968500F5E12F /* SwiftyDropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493DDD801E71968500F5E12F /* SwiftyDropbox.framework */; };
+		493DDD831E71968B00F5E12F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493DDD821E71968B00F5E12F /* Alamofire.framework */; };
 		4947561E1D4D59FD00C485DB /* sim1600.bin in Resources */ = {isa = PBXBuildFile; fileRef = 4947561D1D4D59FD00C485DB /* sim1600.bin */; };
 		49529B1B1DBA2BA2006CF048 /* TraceDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */; };
+		4964D7E91E7198F500078EF9 /* FittingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964D7E81E7198F500078EF9 /* FittingViewController.swift */; };
 		49C8B5431E69A02D005455CB /* Gaussian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8B5421E69A02D005455CB /* Gaussian.swift */; };
-		49FAED3B1D6E096400876B09 /* FittingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FAED3A1D6E096400876B09 /* FittingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,11 +46,12 @@
 		491A7CF51D4CE2040017D238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		491A7D001D4D06510017D238 /* TraceIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceIO.swift; sourceTree = "<group>"; };
 		491E127C1E6DA289004A1EE2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		493DDD7D1E718D6700F5E12F /* cartfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cartfile.txt; sourceTree = "<group>"; };
+		493DDD801E71968500F5E12F /* SwiftyDropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyDropbox.framework; path = Carthage/Build/iOS/SwiftyDropbox.framework; sourceTree = "<group>"; };
+		493DDD821E71968B00F5E12F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		4947561D1D4D59FD00C485DB /* sim1600.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sim1600.bin; sourceTree = "<group>"; };
 		49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceDisplay.swift; sourceTree = "<group>"; };
+		4964D7E81E7198F500078EF9 /* FittingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FittingViewController.swift; sourceTree = "<group>"; };
 		49C8B5421E69A02D005455CB /* Gaussian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gaussian.swift; sourceTree = "<group>"; };
-		49FAED3A1D6E096400876B09 /* FittingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FittingViewController.swift; path = ../FittingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493DDD811E71968500F5E12F /* SwiftyDropbox.framework in Frameworks */,
+				493DDD831E71968B00F5E12F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,10 +77,10 @@
 		491A7CD21D4CE2030017D238 = {
 			isa = PBXGroup;
 			children = (
-				493DDD7D1E718D6700F5E12F /* cartfile.txt */,
 				491A7CDD1D4CE2030017D238 /* ISCAT */,
 				491A7CF21D4CE2040017D238 /* ISCATTests */,
 				491A7CDC1D4CE2030017D238 /* Products */,
+				493DDD7F1E71968400F5E12F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +96,7 @@
 		491A7CDD1D4CE2030017D238 /* ISCAT */ = {
 			isa = PBXGroup;
 			children = (
+				4964D7E81E7198F500078EF9 /* FittingViewController.swift */,
 				49C8B5421E69A02D005455CB /* Gaussian.swift */,
 				491A7CE71D4CE2030017D238 /* LaunchScreen.storyboard */,
 				491A7CE21D4CE2030017D238 /* Main.storyboard */,
@@ -99,7 +104,6 @@
 				491A7D001D4D06510017D238 /* TraceIO.swift */,
 				491A7CE01D4CE2030017D238 /* ViewController.swift */,
 				49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */,
-				49FAED3A1D6E096400876B09 /* FittingViewController.swift */,
 				491A7CE51D4CE2030017D238 /* Assets.xcassets */,
 				491A7CEA1D4CE2030017D238 /* Info.plist */,
 				4947561D1D4D59FD00C485DB /* sim1600.bin */,
@@ -117,6 +121,15 @@
 			path = ISCATTests;
 			sourceTree = "<group>";
 		};
+		493DDD7F1E71968400F5E12F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				493DDD821E71968B00F5E12F /* Alamofire.framework */,
+				493DDD801E71968500F5E12F /* SwiftyDropbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,6 +140,7 @@
 				491A7CD71D4CE2030017D238 /* Sources */,
 				491A7CD81D4CE2030017D238 /* Frameworks */,
 				491A7CD91D4CE2030017D238 /* Resources */,
+				493DDD841E71969F00F5E12F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -172,7 +186,7 @@
 					};
 					491A7CEE1D4CE2040017D238 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = 491A7CDA1D4CE2030017D238;
 					};
 				};
@@ -203,7 +217,6 @@
 			files = (
 				491A7CE91D4CE2030017D238 /* LaunchScreen.storyboard in Resources */,
 				491A7CE61D4CE2030017D238 /* Assets.xcassets in Resources */,
-				493DDD7E1E718D6700F5E12F /* cartfile.txt in Resources */,
 				4947561E1D4D59FD00C485DB /* sim1600.bin in Resources */,
 				491A7CE41D4CE2030017D238 /* Main.storyboard in Resources */,
 			);
@@ -218,16 +231,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		493DDD841E71969F00F5E12F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyDropbox.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		491A7CD71D4CE2030017D238 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				49C8B5431E69A02D005455CB /* Gaussian.swift in Sources */,
+				4964D7E91E7198F500078EF9 /* FittingViewController.swift in Sources */,
 				49529B1B1DBA2BA2006CF048 /* TraceDisplay.swift in Sources */,
 				491A7CE11D4CE2030017D238 /* ViewController.swift in Sources */,
 				491A7CDF1D4CE2030017D238 /* AppDelegate.swift in Sources */,
-				49FAED3B1D6E096400876B09 /* FittingViewController.swift in Sources */,
 				491E127D1E6DA289004A1EE2 /* Event.swift in Sources */,
 				491A7D011D4D06510017D238 /* TraceIO.swift in Sources */,
 			);
@@ -365,6 +396,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ISCAT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.FMP-Berlin.ISCAT";
@@ -380,6 +415,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ISCAT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.FMP-Berlin.ISCAT";
