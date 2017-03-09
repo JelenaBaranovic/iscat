@@ -13,7 +13,7 @@
         <!--Scrolling Trace-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Scrolling Trace" id="BYZ-38-t0r" customClass="ViewController" customModule="ISCAT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Scrolling Trace" id="BYZ-38-t0r" customClass="TraceViewController" customModule="ISCAT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -88,7 +88,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Settings"/>
                                 <connections>
-                                    <segue destination="FAn-o5-43Z" kind="show" identifier="SettingsViewSegue" id="4QE-F6-wIW"/>
+                                    <segue destination="FAn-o5-43Z" kind="presentation" identifier="SettingsViewSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="4QE-F6-wIW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No fitting yet" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTi-RW-D7k" userLabel="Status">

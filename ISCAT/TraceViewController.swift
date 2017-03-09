@@ -20,30 +20,25 @@ class TraceViewController: UIViewController, UIScrollViewDelegate, FitViewContro
 
     let v = TraceDisplay() //content view
     let ld = TraceIO()     //file retrieval
-  
-    let header = 3000       //axograph
+   
+    let header = 3000                   //for axograph files
     let tStart = 0
-    
     let basicChunk : CGFloat = 100     // points in a base chunk of data
     
     var pointIndex : Int = 0
     var tScale = 1          //this is terrible mixing up t and x
+    
+    var originalContentSize = CGSize()
+    var traceLength : Int?
+    var traceArray = [Int16]() //  this array will hold the trace data
+    
+    
+    var progress = Float()
     var offset = CGPoint() //view offset
     var viewSize = CGRect()
     var xp : CGFloat = 0    //the xposn of the trace
     var originalZoom = CGFloat(1)
-    var originalContentSize = CGSize()
-    var traceLength : Int?
     
-    var progress = Float()
-    
-    var traceArray = [Int16]() //  this array will hold the trace data
-    
-    func getTrace() -> [Int16] {
-        traceArray = ld.loadData()
-        return traceArray
-        
-    }
     
     func updateLabels () {
         zoomLabel.text = String(format:"%.1f", sv.zoomScale)
@@ -54,10 +49,7 @@ class TraceViewController: UIViewController, UIScrollViewDelegate, FitViewContro
         progressLabel.text = String(format:"%.1f%%", progress)
         
     }
-    
-    func traceDraw() {
-        
-    }
+
     
     func traceView(arr: [Int16]) {
         traceLength = arr.count
@@ -134,9 +126,9 @@ class TraceViewController: UIViewController, UIScrollViewDelegate, FitViewContro
         
 
         //Load the trace
-        let trace = getTrace()
+        traceArray = ld.loadData()
         //print (trace[0])
-        traceView(arr: trace)
+        traceView(arr: traceArray)
         sv.bouncesZoom = false
         updateLabels()
         
@@ -242,8 +234,10 @@ class TraceViewController: UIViewController, UIScrollViewDelegate, FitViewContro
             {
             if let destinationVC = segue.destination as? SettingsViewController {
                 
-            
-            destinationVC.delegate = self
+                //preparation for segue to settings goes here
+                //maybe need a settings object that can be passed and returned?
+                
+                destinationVC.delegate = self
             }
         }
     }

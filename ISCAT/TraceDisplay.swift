@@ -11,14 +11,13 @@ import UIKit
 class TraceDisplay: UIView {
     
     var tDrawScale : CGFloat = 0.1 {
-    didSet {
-    setNeedsDisplay()
-    print("set")
-    }
+        didSet {
+            setNeedsDisplay()
+            print("set")
+        }
     }
     
     
-        
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {

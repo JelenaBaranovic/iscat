@@ -9,13 +9,22 @@
 import Foundation
 
 class TraceIO {
+    /*
+    func prepareForTrace() {
+        
+    }
+    
+    func loadBinaryDataFromDropbox() -> [Int16] {
+        
+    }
+    */
     
     func loadData() -> [Int16] {
         // select data type
         
         //*read binary data from disk
         // get path to data
-        // dropbox and other sources?
+
         
         let bundle = Bundle.main
         let dataPath :String = bundle.path(forResource: "sim1600", ofType: "bin")!
