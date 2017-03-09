@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     
-    
+    //this code is taken from the Dropbox app integration example.
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
                 
         DropboxClientsManager.setupWithAppKey("9tu3104kspqszx4")  //this key is set under https://dropbox/developers/apps
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case .success(let token):
                 print("Success! User is logged into Dropbox with token: \(token)")
             case .cancel:
-                print("User canceld OAuth flow.")
+                print("User canceled OAuth flow.")
             case .error(let error, let description):
                 print("Error \(error): \(description)")
             }

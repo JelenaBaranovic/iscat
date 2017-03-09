@@ -38,6 +38,7 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //this code taken from the example Dropbox Swift app integration.
     @IBAction func loginDropbox(_ sender: UIButton) {
         
         DropboxClientsManager.authorizeFromController(UIApplication.shared, controller: self, openURL: {(url: URL) -> Void in UIApplication.shared.openURL(url)})
