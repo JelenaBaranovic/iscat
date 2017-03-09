@@ -39,6 +39,7 @@ class FittingViewController: UIViewController {
     var locationOfEndTap: CGPoint?
     var averageY: CGFloat = 0.0          //want to store this for each event later
     
+    @IBOutlet weak var console: UITableView!
     @IBOutlet weak var FitView: UIView!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var BackButton: UIButton!
@@ -140,7 +141,7 @@ class FittingViewController: UIViewController {
             //should be dynamic
             
             print ("began two finger pan", locationOfBeganTap!)
-            
+            console.dataSource()
             gaussianPath = gfit.buildGaussPath(firstTouch: locationOfBeganTap!, currentTouch: locationOfBeganTap!, window: fitWindow)
             gaussianLayer = gfit.buildGaussLayer(gPath: gaussianPath)
             FitView.layer.addSublayer(gaussianLayer)
