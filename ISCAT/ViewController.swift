@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyDropbox
 
-class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerDelegate, SettingsViewControllerDelegate {
 
     @IBOutlet weak var sv: UIScrollView!
     @IBOutlet weak var zoomButton: UIButton!
@@ -214,6 +215,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
         controller.dismiss(animated: true, completion: {})
     }
     
+    func SettingsVCDidFinish(controller: SettingsViewController) {
+        //print ("SVCDF")
+        controller.dismiss(animated: true, completion: {})
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FitViewSegue"
         {
@@ -232,7 +238,16 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
                 
             }
         }
+        else if segue.identifier == "SettingsViewSegue"
+            {
+            if let destinationVC = segue.destination as? SettingsViewController {
+                
+            
+            destinationVC.delegate = self
+            }
+        }
     }
+    
     
     //add vertical zoom?
 
@@ -257,6 +272,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerD
     }
 
     //if this code executes, trace display disappears but otherwise app still runs
+    
     @IBAction func zoomOut(_ sender: UIButton) {
         //need to put a defensive limit in here to avoid undershoot (data disappears!)
         

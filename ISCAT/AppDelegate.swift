@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyDropbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,12 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
                 
-        // Override point for customization after application launch.
+        DropboxClientsManager.setupWithAppKey("9tu3104kspqszx4")  //this key is set under https://dropbox/developers/apps
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        
+        if let authResult = DropboxClientsManager.handleRedirectURL(url) {
+            switch authResult {
+            case .success(let token):
+                print("Success! User is logged into Dropbox with token: \(token)")
+            case .cancel:
+                print("User canceld OAuth flow.")
+            case .error(let error, let description):
+                print("Error \(error): \(description)")
+            }
+        }
+        return false
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

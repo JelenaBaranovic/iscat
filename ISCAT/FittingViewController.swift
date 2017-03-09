@@ -311,8 +311,8 @@ class FittingViewController: UIViewController {
     
     
     // run fitting command
-    
-    @IBAction func goBack(_ sender: AnyObject) {
+
+    @IBAction func goBack(_ sender: Any) {
         print ("button")
         delegate?.FitVCDidFinish(controller: self, touches: panCount, fit: fitData)
         
