@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TraceViewController.swift
 //  ISCAT
 //
 //  Created by Andrew on 30/07/2016.
@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyDropbox
 
-class ViewController: UIViewController, UIScrollViewDelegate, FitViewControllerDelegate, SettingsViewControllerDelegate {
+class TraceViewController: UIViewController, UIScrollViewDelegate, FitViewControllerDelegate, SettingsViewControllerDelegate {
 
     @IBOutlet weak var sv: UIScrollView!
     @IBOutlet weak var zoomButton: UIButton!

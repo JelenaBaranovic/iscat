@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		490353021E71AF9C00C7333D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490353011E71AF9C00C7333D /* SettingsViewController.swift */; };
 		491A7CDF1D4CE2030017D238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7CDE1D4CE2030017D238 /* AppDelegate.swift */; };
-		491A7CE11D4CE2030017D238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7CE01D4CE2030017D238 /* ViewController.swift */; };
+		491A7CE11D4CE2030017D238 /* TraceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A7CE01D4CE2030017D238 /* TraceViewController.swift */; };
 		491A7CE41D4CE2030017D238 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491A7CE21D4CE2030017D238 /* Main.storyboard */; };
 		491A7CE61D4CE2030017D238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 491A7CE51D4CE2030017D238 /* Assets.xcassets */; };
 		491A7CE91D4CE2030017D238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491A7CE71D4CE2030017D238 /* LaunchScreen.storyboard */; };
@@ -38,7 +38,7 @@
 		490353011E71AF9C00C7333D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		491A7CDB1D4CE2030017D238 /* ISCAT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISCAT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		491A7CDE1D4CE2030017D238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		491A7CE01D4CE2030017D238 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		491A7CE01D4CE2030017D238 /* TraceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceViewController.swift; sourceTree = "<group>"; };
 		491A7CE31D4CE2030017D238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		491A7CE51D4CE2030017D238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		491A7CE81D4CE2030017D238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,19 +98,19 @@
 		491A7CDD1D4CE2030017D238 /* ISCAT */ = {
 			isa = PBXGroup;
 			children = (
-				4964D7E81E7198F500078EF9 /* FittingViewController.swift */,
-				49C8B5421E69A02D005455CB /* Gaussian.swift */,
+				491A7CDE1D4CE2030017D238 /* AppDelegate.swift */,
+				491A7CE51D4CE2030017D238 /* Assets.xcassets */,
+				4947561D1D4D59FD00C485DB /* sim1600.bin */,
+				491A7CEA1D4CE2030017D238 /* Info.plist */,
 				491A7CE71D4CE2030017D238 /* LaunchScreen.storyboard */,
 				491A7CE21D4CE2030017D238 /* Main.storyboard */,
-				491A7CDE1D4CE2030017D238 /* AppDelegate.swift */,
+				49C8B5421E69A02D005455CB /* Gaussian.swift */,
 				491A7D001D4D06510017D238 /* TraceIO.swift */,
-				491A7CE01D4CE2030017D238 /* ViewController.swift */,
 				49529B1A1DBA2BA2006CF048 /* TraceDisplay.swift */,
-				491A7CE51D4CE2030017D238 /* Assets.xcassets */,
-				491A7CEA1D4CE2030017D238 /* Info.plist */,
-				4947561D1D4D59FD00C485DB /* sim1600.bin */,
 				491E127C1E6DA289004A1EE2 /* Event.swift */,
+				491A7CE01D4CE2030017D238 /* TraceViewController.swift */,
 				490353011E71AF9C00C7333D /* SettingsViewController.swift */,
+				4964D7E81E7198F500078EF9 /* FittingViewController.swift */,
 			);
 			path = ISCAT;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 				49C8B5431E69A02D005455CB /* Gaussian.swift in Sources */,
 				4964D7E91E7198F500078EF9 /* FittingViewController.swift in Sources */,
 				49529B1B1DBA2BA2006CF048 /* TraceDisplay.swift in Sources */,
-				491A7CE11D4CE2030017D238 /* ViewController.swift in Sources */,
+				491A7CE11D4CE2030017D238 /* TraceViewController.swift in Sources */,
 				491A7CDF1D4CE2030017D238 /* AppDelegate.swift in Sources */,
 				491E127D1E6DA289004A1EE2 /* Event.swift in Sources */,
 				491A7D011D4D06510017D238 /* TraceIO.swift in Sources */,
